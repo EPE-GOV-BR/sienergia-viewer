@@ -1,0 +1,65 @@
+Package: sienergiaviewer
+Title: Dashboard Sienergia
+Version: 0.0.0.9002
+Authors@R: person('Bruno', 'Crotman', email = 'bruno.crotman@epe.gov.br', role = c('cre', 'aut'))
+Description: Dashboard Sienergia
+License: file LICENSE
+Imports: 
+    config,
+    golem,
+    shiny,
+    processx,
+    attempt,
+    DT,
+    glue,
+    htmltools,
+    treemapify,
+    dplyr,
+    tidyr,
+    DBI,
+    RSQLite,
+    dbplyr,
+    ggfittext,
+    pkgload,
+    feather,
+    shinydashboard,
+    dashboardthemes,
+    patchwork,
+    ggiraph,
+    readxl,
+    RColorBrewer,
+    scales,
+    latex2exp,
+    colorspace,
+    reactable,
+    writexl,
+    shinydashboardPlus,
+    shinyjs,
+    shinyWidgets,
+    janitor,
+    ggmap,
+    geobr,
+    sf,
+    gghighlight,
+    here,
+    labelled,
+    sidrar,
+    lubridate,
+    ggplot2,
+    purrr,
+    readr,
+    rlang,
+    stringr,
+    tibble,
+    tictoc,
+    bsplus
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.3.1
+Suggests: 
+    piggyback,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+URL: https://github.com/curso-r/sienergiaviewer
+BugReports: https://github.com/curso-r/sienergiaviewer/issues
+Depends: R (>= 3.5.0)

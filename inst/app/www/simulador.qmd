@@ -1,0 +1,394 @@
+---
+title: "Manual de Usuário - Módulo Simulador - Sistema de Informações para Energia (SIEnergia)"
+subtitle: "Guia para Uso do Módulo Simulador"
+author: "Empresa de Pesquisa Energética - EPE"
+date: last-modified
+format:
+  html:
+    embed-resources: true 
+execute:
+  echo: false    
+lang: pt
+language:
+  title-block-published: "Data de atualização"
+  title-block-author-single: "Autoria"
+toc: true
+---
+
+```{r}
+#| message: false
+#| warning: false
+devtools::load_all()
+con_db <- DBI::dbConnect(RSQLite::SQLite(), here::here("SIEnergia_dados.sqlite"))  
+```
+
+```{css}
+figcaption{
+  color: gray;
+  font-size: 0.8em;
+}
+```
+
+[![](sienergia_epe.png){fig-alt="Logo da EPE" fig-align="center"}](https://www.epe.gov.br/pt)
+
+# Introdução {#sec-introducao}
+
+A Empresa de Pesquisa Energética (EPE) é uma Empresa pública, vinculada ao Ministério de Minas e Energia, instituída nos termos da Lei nº 10.847, de 15 de março de 2004, a EPE tem por finalidade prestar serviços na área de estudos e pesquisas destinadas subsidiar o planejamento do setor energético, tais como energia elétrica, petróleo e gás natural e seus derivados, carvão mineral, fontes energéticas renováveis e eficiência energética, dentre outras.
+
+O Sistema de Informações para Energia (SIEnergia) é um sistema de informações desenvolvido pela EPE para auxiliar o planejamento energético nacional. O sistema é composto por um conjunto de ferramentas que permitem a visualização de dados sobre o potencial energético disponível no país, utilizando coprodutos da agropecuária, indústria e saneamento.
+
+O SIEnergia apresenta vários módulos, como "Produto", "Energético", "Combustível", "Energia" e "Simulador".
+
+**Este manual tem como objeto servir de guia para o uso do módulo Simulador.**
+
+![Página inicial do SIEnergia](imagens_manual_simulador/index-sienergia.png){fig-alt="Captura de tela da página inicial do SIEnergia" fig-align="center"}
+
+# Módulo Simulador {#sec-modulo}
+
+O **módulo Simulador** permite a simulação de cenários de geração de energia através das rotas de Densificação, Biodigestão, e Co-firing, utilizando produtos agropecuários. Os resultados são apresentados utilizando medidas-resumo, mapas e tabelas.
+
+Para acessar o módulo Simulador, acesse o SIEnergia, e clique na opção "Simulador" no menu lateral esquerdo:
+
+![Para acessar o módulo Simulador, clique em "Simulador" no menu lateral esquerdo.](imagens_manual_simulador/index-sienergia-com-seta.jpg){fig-alt="Captura de tela da página inicial do SIEnergia" fig-align="center"}
+
+A tela inicial do módulo Simulador apresenta um conjunto de parâmetros de entrada, que podem ser configurados pelo usuário. Os parâmetros são divididos em três grupos: "Opções da simulação", "Parâmetros das rotas econômicas" e "Parâmetros extras", que serão detalhados nas seções seguintes (@sec-parametros).
+
+Abaixo dos parâmetros de entrada, há um botão "Rodar otimizador", que inicia o processo de simulação. Ao final do processo, os resultados serão apresentados na tela, que será detalhada na @sec-resultados.
+
+![Captura de tela da página SIEnergia - Módulo Simulador](imagens_manual_simulador/sienergia-simulador.png){fig-alt="Captura de tela da página SIEnergia - Módulo Simulador" fig-align="center"}
+
+# Configuração dos Parâmetros {#sec-parametros}
+
+A seguir, será detalhadamente explicado cada um dos parâmetros de entrada do módulo Simulador.
+
+## Opções da simulação
+
+Os parâmetros de entrada do grupo "Opções da simulação" permitem configurar o escopo da simulação, ou seja, quais produtos serão utilizados, quais rotas econômicas serão simuladas, quais limitações serão aplicadas, entre outros.
+
+![Captura de tela da página SIEnergia - Módulo Simulador - Opções da simulação](imagens_manual_simulador/simulador-filtros.png){fig-alt="Captura de tela da página SIEnergia - Módulo Simulador - Opções da simulação" fig-align="center"}
+
+### Rotas econômicas {#sec-parametros-rotas}
+
+O parâmetro "Rotas econômicas" permite selecionar quais rotas serão simuladas. É necessário selecionar pelo menos uma rota, porém o filtro permite selecionar múltiplas rotas.
+
+É possível selecionar as seguintes rotas econômicas:
+
+-   **Densificação - Energia elétrica - produtos agrícolas**: Simula a geração de energia elétrica através da rota de densificação de biomassa, utilizando resíduos de produtos agrícolas.
+
+-   **Biodigestão - Combustível - produtos agrícolas**: Simula a geração de combustível veicular através da rota de biodigestão, utilizando resíduos de produtos agrícolas.
+
+-   **Biodigestão - Combustível - Resíduos pecuários**: Simula a geração de combustível veicular através da rota de biodigestão, utilizando resíduos de produtos pecuários.
+
+-   **Biodigestão - Energia elétrica - produtos agrícolas**: Simula a geração de energia elétrica através da rota de biodigestão, utilizando resíduos de produtos agrícolas.
+
+-   **Biodigestão - Energia elétrica - Resíduos pecuários**: Simula a geração de energia elétrica através da rota de biodigestão, utilizando resíduos de produtos pecuários.
+
+-   **Co-firing - produtos agrícolas**: Simula a geração de insumos energéticos através da rota de co-firing, utilizando resíduos de produtos agrícolas.
+
+![Captura de tela da página SIEnergia - Módulo Simulador - Opções da simulação - Rotas](imagens_manual_simulador/simulador-rotas.png){out-width="50%" fig-alt="Captura de tela da página SIEnergia - Módulo Simulador - Opções da simulação - Rotas" fig-align="center" width="50%"}
+
+### Região escopo
+
+O parâmetro "Região escopo" permite selecionar quais regiões serão consideradas na simulação. O simulador considera a região selecionada como a região de origem dos produtos agropecuários. Por exemplo, se for selecionado o estado de São Paulo, o simulador considerará que os produtos agropecuários produzidos em São Paulo. Além disso, a região de escopo é importante para filtrar os dados relevantes para a simulação, como a demanda de energia elétrica e de combustível em cada município.
+
+As opções são os estados brasileiros (selecionando a sigla da UF).
+
+O valor padrão utilizado pelo simulador é "AC", ou seja, o estado do Acre (por questões de ordem alfabética).
+
+::: {.callout-warning title="Atenção"}
+O simulador pode demorar alguns minutos para ser executado quando a região escopo abrange muitas regiões.
+:::
+
+![Captura de tela da página SIEnergia - Módulo Simulador - Opções da simulação - Regiões](imagens_manual_simulador/simulador-regioes.png){out-width="50%" fig-alt="Captura de tela da página SIEnergia - Módulo Simulador - Opções da simulação - Regiões" fig-align="center" width="30%"}
+
+### Produtos
+
+Este parâmetro permite selecionar quais produtos serão utilizados na simulação. É necessário selecionar pelo menos um produto, porém o filtro permite selecionar múltiplos produtos.
+
+Os produtos disponíveis são:
+
+-   Algodão herbáceo
+
+-   Arroz
+
+-   Banana
+
+-   Café
+
+-   Feijão
+
+-   Laranja
+
+-   Mandioca
+
+-   Milho
+
+-   Soja
+
+-   Trigo
+
+-   Bovino de corte
+
+-   Bovino de leite
+
+-   Galinha
+
+-   Suíno
+
+Por padrão, todos os produtos são selecionados.
+
+::: {.callout-warning title="Atenção"}
+Para que os produtos selecionados sejam considerados no simulador, pelo menos uma rota que utilize resíduos dos produtos escolhidos deve ser selecionada. Em caso de dúvidas, consulte a @sec-parametros-rotas.
+:::
+
+![Captura de tela da página SIEnergia - Módulo Simulador - Opções da simulação - Produtos](imagens_manual_simulador/simulador-produtos.png){out-width="50%" fig-alt="Captura de tela da página SIEnergia - Módulo Simulador - Opções da simulação - Produtos" fig-align="center" width="30%"}
+
+### Número máximo de usinas por sede
+
+Uma sede, no contexto do simulador, é uma região geográfica que pode abrigar uma ou mais usinas. Neste caso, cada sede é um município, chamado de "município sede" ou apenas "sede".
+
+O parâmetro "Número máximo de usinas por sede" permite limitar o número máximo de usinas que podem ser instaladas em uma mesma sede.
+
+O valor padrão utilizado pelo simulador é de até 100 usinas por sede. Este valor pode ser alterado pelo usuário, mas é importante ressaltar que o aumento deste valor pode aumentar o tempo de execução do simulador.
+
+### Número máximo de sedes testadas
+
+O parâmetro "Número máximo de sedes testadas" (`num_c`) permite limitar o número máximo de sedes que serão testadas pelo simulador. Por exemplo, caso `num_c` receba o número 5570 (o número de municípios do Brasil), o simulador poderá testar para cada município até 5570 possibilidades de fornecimento de energético. Ou seja, todas as possibilidades seriam contempladas.
+
+Entretanto, é comum que a solução ótima esteja dentre as soluções mais lucrativas. O parâmetro `num_c` permite restringir essas comparações apenas às `num_c` relações de oferta de energético \<-\> consumo de energético que são mais lucrativas. Nossas análises de sensibilidade indicam que o valor `num_c = 100` é suficiente para a maior parte de cenários.
+
+### População mínima para considerar uma sede
+
+O simulador considera que uma sede só pode ser construída em um município que possui uma população mínima. O valor padrão é 100.000 habitantes.
+
+### Considerar a sazonalidade da produção agrícola
+
+Ao selecionar esta opção, o simulador irá considerar a sazonalidade da produção agrícola. A @tbl-sazonalidade apresenta os valores utilizados pelo simulador para cada combinação de produto, UF e mês.
+
+Por padrão, esta opção está habilitada.
+
+```{r}
+#| message: false
+#| warning: false
+tab_sazonalidade <- dplyr::tbl(con_db, "sazonalidade_producao_agricola") |>
+  dplyr::collect() |>
+  dplyr::mutate(
+    uf_nome = toupper(uf_nome),
+    mes_texto = toupper(mes_texto),
+    mes_texto = forcats::fct_reorder(mes_texto, mes_numero)
+  ) |>
+  dplyr::group_by(uf_nome, produto_nome, mes_texto) |>
+  dplyr::summarise(producao_ton = sum(producao_ton)) |>
+  dplyr::ungroup() |>
+  dplyr::group_by(produto_nome, uf_nome) |>
+  dplyr::mutate(prop_producao = producao_ton / sum(producao_ton)) |>
+  dplyr::select(-producao_ton) |>
+  dplyr::ungroup() |>
+  tidyr::pivot_wider(
+    names_from = mes_texto,
+    values_from = prop_producao,
+    id_cols = c(uf_nome, produto_nome)
+  ) |>
+  dplyr::arrange(produto_nome, uf_nome) |> 
+  janitor::adorn_totals(where = "col") |> 
+  ungroup() |> 
+  dplyr::mutate(
+    dplyr::across(
+      .cols = tidyselect::any_of(c("JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ", "Total")),
+      .fns = ~ scales::percent(.x, accuracy = 1)
+    )
+  )
+```
+
+```{r}
+#| message: false
+#| warning: false
+#| label: tbl-sazonalidade
+#| tbl-cap: "Sazonalidade da produção agrícola, por UF/Produto/Mês"
+tab_sazonalidade |> 
+  dplyr::rename("UF" = uf_nome, "Produto" = produto_nome) |>
+ tabela_padrao()
+```
+
+### Limitadores
+
+Os filtros na seção "Limitadores" permitem limitar os resultados da simulação, de acordo com as opções selecionadas.
+
+![Captura de tela da página SIEnergia - Módulo Simulador - Opções da simulação - Limitadores](imagens_manual_simulador/filtros-limitadores.png){out-width="50%" fig-alt="Captura de tela da página SIEnergia - Módulo Simulador - Opções da simulação - Limitadores" fig-align="center" width="30%"}
+
+#### Limitar por demanda
+
+Ao selecionar esta opção, o simulador irá limitar a quantidade de energia ou combustível gerada, de acordo com: (a) a demanda energética da distribuidora de energia elétrica responsável pelo atendimento da região escopo ou (b) a demanda por combustíveis veiculares no município sede ou (c) a demanda por combustível para queima em cimenteiras, usinas siderúrgicas e UTEs já existentes.
+
+Por padrão, esta opção está habilitada.
+
+#### Limitar a produção de energia elétrica pelo tamanho da usina (5MW)
+
+Ao selecionar esta opção, o simulador irá limitar os resultados de rotas que geram energia elétrica para que as usinas sejam de microgeração, tendo uma potência instalada de até 5 MW.
+
+Por padrão, esta opção está habilitada.
+
+## Parâmetros das rotas econômicas
+
+Os parâmetros das rotas econômicas são utilizados pelo simulador, e devem ser configurados para cada rota econômica. Os parâmetros são divididos em 5 grupos: econômicos, usina, obtenção do resíduo, transporte e demanda (este último apenas para a rota de co-firing).
+
+![Captura de tela da página SIEnergia - Módulo Simulador - Opções da simulação - Parâmetros das rotas econômicas](imagens_manual_simulador/parametros-das-rotas.png){out-width="100%" fig-alt="Captura de tela da página SIEnergia - Módulo Simulador - Opções da simulação - Parâmetros das rotas econômicas" fig-align="center" width="50%"}
+
+### Econômicos
+
+-   **Receita:** Valor da receita obtida pela rentabilização: (a) nas rotas de energia elétrica, da energia elétrica gerada pela usina por compensação de energia gerada via MMGD; (b) nas rotas de combustível veicular da comercialização de biometano; ou (c) na rota de cofiring da comercialização do combustível.
+
+-   **Taxa de desconto anualizada:** Segundo (Crotman, 2019) esta taxa deve ser a taxa neutra a risco para uma efetiva avaliação do valor econômico de um ativo. A taxa neutra ao risco deve ser a soma da taxa livre de risco com um prêmio de risco. A estimação do prêmio de risco depende de fatores como a aversão a risco específica do investidor e a quantidade de risco não diversificável do investimento. Assim, qualquer investidor candidato pode avaliar o potencial do aproveitamento de resíduos, levando em conta suas próprias premissas de prêmio de risco exigido.
+
+### Usina
+
+-   **Capex fixo:** Coeficiente linear da função Capex (função que transforma a potência de uma usina termoelétrica no seu custo). Veja equações 3.8 e 3.15 (Crotman, 2019).
+
+-   **Capex adicional:** Coeficiente angular da função Capex (função que transforma a potência de uma usina termoelétrica no seu custo). Veja páginas 36 e 39 (Crotman, 2019).
+
+-   **Percentual Opex:** Percentual do investimento inicial que representa o custo anual para operação e manutenção da usina. É o valor 'fOpex' da equação 3.12 (Crotman, 2019).
+
+-   **Eficiência da usina:** Eficiência da usina termelétrica, ou seja, a parcela de energia contida no resíduo que é efetivamente transformada em energia;
+
+-   **Vida útil da usina:** Número de anos de vida útil de uma usina.
+
+-   **Fator de disponibilidade da usina:** O fator de disponibilidade da usina termelétrica. Este fator representa qual fração de tempo uma termelétrica permanece funcionando durante um período longo. São descontados os períodos típicos de indisponibilidade não programada e manutenções programadas. Este parâmetro é adimensional.
+
+### Obtenção do resíduo
+
+-   **Custo de coleta:** Custo de se coletar o resíduo e levar até 15km de distância (R\$/tonelada). É o valor 'Colheita' da equação 3.11 (Crotman, 2019).
+
+-   **Custo de armazenamento:** Custo de armazenamento (R\$/tonelada). É o valor 'Armaz' da equação 3.11 (Crotman, 2019).
+
+-   **Custo de carga e descarga do resíduo:** Custo de carga e descarga de todo o processo desde a coleta do resíduo na sua origem até a entrega na usina termelétrica (R\$/tonelada). É o valor 'Carga' da equação 3.11 (Crotman, 2019).
+
+-   **Prêmio para o produtor:** Prêmio oferecido ao produtor pelo fornecimento do resíduo em % no caso de percentual do custo logístico ou reais por tonelada no caso de percentual do valor de mercado. É o valor 'Prêmio_c' da equação 3.10 (Crotman, 2019).
+
+### Transporte
+
+-   **Custo fixo de transporte:** Custo fixo de remuneração do tranposrte por 1 km. Essa quantidade representa a quantidade em R\$ por quilômetro que seria considerada para transportar valores muito pequenos de biomassa.
+
+-   **Custo de transporte:** Custo de transporte entre o município de origem do resíduo e o local onde está a usina termelétrica (R\$ por tonelada por quilômetro). É o valor 'Transp' da equação 3.11 (Crotman, 2019).
+
+### Demanda (apenas para Co-firing)
+
+-   **Demanda de termelétrica:** % da demanda por combustíveis de UTEs que poderia ser substituída por briquete ou pellets, valor entre 0 e 100%.
+
+-   **Demanda siderúrgica:** % da demanda por combustíveis de siderúrgicas que poderia ser substituída por briquete ou pellets, valor entre 0 e 100%.
+
+-   **Demanda cimenteira:** % da demanda por combustíveis de cimenteiras que poderia ser substituída por briquete ou pellets, valor entre 0 e 100%.
+
+## Parâmetros extras
+
+### Transporte
+
+-   **Considerar frete para ida e volta no cálculo do combustível consumido e distância percorrida** - Ao selecionar esta opção, o simulador irá considerar que o caminhão que transporta o resíduo irá retornar vazio para a origem, após descarregar o resíduo na usina, e portanto irá considerar o dobro da distância percorrida e do combustível consumido. Essa opção está habilitada por padrão.
+
+### Externalidades
+
+-   **Empregos**: fator de empregabilidade por unidade de energia gerada e fator de remuneração pessoal. Fatores calculados a partir de dados obtidos em [IRENA](https://www.irena.org/Data/View-data-by-topic/Benefits/Renewable-Energy-Employment-by-Country), referente à 2022.
+
+-   **Consumo de água** - fator de consumo de água por unidade de energia gerada. Fatores calculados a partir de dados obtidos em: [Conde (2013, p. 63)](https://www.ppe.ufrj.br/images/publica%C3%A7%C3%B5es/mestrado/Marcos_Ribeiro_Conde.pdf).
+
+-   **Emissões** - fator de emissões por unidade de energia gerada.  Fatores calculados a partir de dados obtidos em [IRENA](https://www.irena.org/Data/View-data-by-topic/Climate-Change/Avoided-Emissions-Calculator).
+
+
+
+# Execução do Simulador
+
+Para realizar uma simulação, selecione os parâmetros desejados e clique no botão "Rodar Simulador".
+
+O simulador pode demorar alguns minutos para realizar a simulação, dependendo dos parâmetros selecionados. Durante a execução, o simulador irá exibir uma barra de progresso, indicando o andamento da simulação.
+
+Após realizar a simulação, o simulador irá exibir os resultados na tela. Para mais informações sobre os resultados, consulte a @sec-resultados.
+
+# Apresentação dos Resultados {#sec-resultados}
+
+Os resultados da simulação são apresentados em diferentes formas, como caixas com valores sumarizados, mapas e tabelas. A seguir, são descritos os principais resultados apresentados pelo simulador.
+
+![Captura de tela da página SIEnergia - Módulo Simulador - Resultados](imagens_manual_simulador/simulador-resultados.png){fig-alt="Captura de tela da página SIEnergia - Módulo Simulador - Resultados" fig-align="center"}
+
+## Caixas com valores sumarizados
+
+A primeira seção de resultados apresenta alguns valores sumarizados em caixas, como:
+
+-   o valor da solução encontrada (em R\$);
+
+-   o número de usinas a serem contruídas, segundo os resultados da simulação;
+
+-   a porcentagem de biomassa de resíduos agrícolas aproveitada;
+
+-   a porcentagem de biomassa de resíduos pecuários aproveitada.
+
+![Exemplo de Resultados apresentados como valores sumarizados: valor da solução e número de usinas.](imagens_manual_simulador/resultados-caixa-1.png){out-width="50%" fig-align="center" width="100%" fig-alt="Captura de tela da página SIEnergia - Módulo Simulador - Resultados - Caixas"}
+
+![Exemplo de Resultados apresentados como valores sumarizados: Biomassa aproveitada.](imagens_manual_simulador/resultados-caixa-2.png){out-width="50%" fig-align="center" width="100%" fig-alt="Captura de tela da página SIEnergia - Módulo Simulador - Resultados - Caixas"}
+
+## Mapas
+
+Para acessar os mapas, é necessário clicar em "Ver mapas".
+
+Os mapas apresentam os resultados da simulação, separados por rota econômica. No menu lateral da aba de Mapas, aparece uma opção para cada rota econômica.
+
+![Captura de tela da página SIEnergia - Módulo Simulador - Resultados - Mapas](imagens_manual_simulador/resultados-mapas-1.png){out-width="50%" fig-align="center" width="100%" fig-alt="Captura de tela da página SIEnergia - Módulo Simulador - Resultados - Mapas"}
+
+No mapa por rota, há um menu com uma lista de nomes de municípios. Ao clicar em um município sede, o mapa irá exibir os municípios fornecedores de biomassa para a(s) sede(s) selecionada(s).
+
+![Captura de tela da página SIEnergia - Módulo Simulador - Resultados - Mapas - Selecionando apenas uma sede](imagens_manual_simulador/resultados-mapas-2.png){out-width="50%" fig-align="center" width="100%" fig-alt="Captura de tela da página SIEnergia - Módulo Simulador - Resultados - Mapas"}
+
+## Tabelas
+
+É possível fazer download das tabelas com os resultados da simulação, clicando em "Baixar tabelas".
+
+As tabelas apresentam os resultados da simulação, considerando diversos aspectos, como:
+
+-   Potência instalada
+
+-   Investimentos
+
+-   Biomassa aproveitada
+
+-   Municípios fornecedores
+
+-   Demanda satisfeita (%), Demanda satisfeita (Energia elétrica), Demanda satisfeita (Combustível), Demanda satisfeita (Co-firing)
+
+-   Externalidades: Geração de empregos, Emissões anuais, Consumo de água anual
+
+-   Distância percorrida
+
+-   Combustível consumido
+
+# Fonte dos Dados {#sec-fonte-dados}
+
+Existem várias fontes de dados utilizadas pelo simulador. A seguir, são listadas os principais dados utilizadas pelo simulador e suas respectivas fontes. Caso tenha dúvidas, acesse @sec-suporte e entre em contato com a equipe da EPE.
+
+-   Produção agropecuária: Instituto Brasileiro de Geografia e Estatística (IBGE), através do Sistema IBGE de Recuperação Automática (SIDRA)
+
+-   População municipal: Instituto Brasileiro de Geografia e Estatística (IBGE) 
+
+-   Distância entre municípios: dados obtidos usando a API do Open Source Routing Machine (ORSM).
+
+-   Demanda de energia elétrica: Agência Nacional de Energia Elétrica (ANEEL)
+
+-   Demanda de combustíveis (gasolina e diesel): Agência Nacional do Petróleo, Gás Natural e Biocombustíveis (ANP)
+
+-   Demanda de co-firing: Levantamentos realizados pela EPE
+
+-   Sazonalidade da venda de combustíveis: Agência Nacional do Petróleo, Gás Natural e Biocombustíveis (ANP)
+
+-   Sazonalidade da produção agrícola: Levantamentos realizados pela EPE
+
+# Suporte e Contato {#sec-suporte}
+
+Em caso de dúvidas, entre em contato com a equipe de coordenação técnica do SIEnergia através do e-mail:
+
+-   **Luciano Basto Oliveira** - [luciano.oliveira\@epe.gov.br](mailto:luciano.oliveira@epe.gov.br){.email}
+
+-   **Daniel Kühner Coelho** - [daniel.coelho\@epe.gov.br](mailto:daniel.coelho@epe.gov.br){.email}
+
+## Referências citadas
+
+CROTMAN, BRUNO MAURICIO RODRIGUES. **Avaliação da geração de energia a partir de resíduos no Brasil usando otimização heurística.** 2019. Dissertação de mestrado. UNIVERSIDADE FEDERAL DO ESTADO DO RIO DE JANEIRO, Rio de Janeiro. Acesso em: <https://ppgi.uniriotec.br/download/3080/?tmstv=1703009394>
+
+
+CONDE, MARCOS RIBEIRO. **Incorporação da dimensão ambiental no planejamento de longo prazo da expensão da geração de energia elétrica por meio de técnicas multicritério de apoio a tomada de decisão.** 2013. Dissertação de mestrado.  UNIVERSIDADE FEDERAL DO RIO DE JANEIRO, Rio de Janeiro. Acesso em: <https://www.ppe.ufrj.br/images/publica%C3%A7%C3%B5es/mestrado/Marcos_Ribeiro_Conde.pdf>

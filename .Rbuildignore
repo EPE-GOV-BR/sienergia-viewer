@@ -1,0 +1,5 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+otimizadorDados.sqlite
+SIEnergia_dados.sqlite
+^data-raw$

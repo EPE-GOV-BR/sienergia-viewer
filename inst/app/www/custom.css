@@ -1,0 +1,493 @@
+---------------------------- Shiny Inputs -------------------------------- .checkbox-group-buttons.shiny-bound-input {
+  overflow-x: auto;
+}
+
+.checkbox-group-buttons.shiny-bound-input>.btn-group.btn-group-container-sw {
+  display: inline-flex;
+  justify-content: space-evenly;
+}
+
+.shiny-split-layout>div {
+  overflow: hidden;
+  /*border: 0.1px solid;*/
+}
+
+.shiny-split-layout {
+  display: flex;
+  /*border: 0.1px solid;*/
+}
+
+.irs-from,
+.irs-to,
+.irs-single {
+  background: #0c2340;
+}
+
+.irs-bar {
+  height: 8px;
+  top: 25px;
+  border-top: 1px solid #0c2340;
+  border-bottom: 1px solid #0c2340;
+  background: #0c2340;
+}
+
+.slider-animate-button {
+  opacity: 1.0;
+  color: #0c2340;
+  text-align: right;
+  font-size: 20px;
+}
+
+.slider-animate-container {
+  text-align: right;
+  margin-top: -24px;
+  margin-right: -35px;
+}
+
+.irs-bar-edge {
+  height: 8px;
+  top: 25px;
+  width: 14px;
+  border: 1px solid #0c2340;
+  border-right: 0;
+  background: #0c2340;
+  border-radius: 16px 0 0 16px;
+  -moz-border-radius: 16px 0 0 16px;
+}
+
+.checkbox-inline,
+.radio-inline {
+  font-size: 70%;
+}
+
+.form-group {
+  margin-bottom: 0px;
+}
+
+.filtros .box {
+  background-color: #708090;
+}
+
+div.filtros {
+  overflow: visible;
+}
+
+
+/* ------------------------------- Titulo ----------------------------------- */
+#page_header {
+  color: #FFFFFF;
+  font-size: xx-large;
+  font-weight: bold;
+}
+
+#page_header:hover {
+  background-color: #0c2340;
+}
+
+#page_header:focus {
+  background-color: #0c2340;
+}
+
+.main-header .navbar-custom-menu,
+.main-header .navbar-right {
+  display: flex;
+  justify-content: center;
+  float: none;
+}
+
+.skin-blue .main-header .logo {
+  box-shadow: 3px 5px 5px #dfdfdf;
+  background-color: #0c2340;
+}
+
+.skin-blue .main-header .navbar {
+  box-shadow: 3px 5px 5px #dfdfdf;
+  background-color: #0c2340;
+}
+
+.skin-blue .main-header .navbar .sidebar-toggle {
+  color: rgb(255, 255, 255);
+  background-color: #0c2340;
+}
+
+.main-header .logo {
+  text-align: left;
+  padding-left: 5px;
+}
+
+.logo-epe {
+  padding-right: 10px;
+}
+
+/* ------------------------------ Tabelas ----------------------------------- */
+.ReactTable {
+  font-size: 8pt;
+  overflow-x: auto;
+}
+
+.Reactable .rt-tr {
+  height: 20px;
+  display: flex;
+}
+
+.Reactable .rt-th-content {
+  font-size: 8pt;
+  font-weight: bold;
+}
+
+.Reactable .rt-tr-header {
+  height: auto;
+}
+
+.ReactTable .rt-tfoot {
+  font-weight: bold;
+}
+
+.ReactTable .rt-table {
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.rt-table::-webkit-scrollbar {
+  display: none;
+}
+
+.rt-compact .rt-td-inner,
+.rt-compact .rt-th-inner {
+  padding: 4px 2px;
+}
+
+.rt-pagination {
+  -webkit-box-pack: justify;
+  -webkit-box-align: baseline;
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: flex-end;
+  padding: 0px;
+}
+
+/* ------------------------------ Mosaicos ---------------------------------- */
+.mosaico_setor {
+  margin-top: 0cm;
+  max-height: 21vh;
+  overflow-y: hidden;
+}
+
+.mosaico_regioes {
+  margin-top: 0cm;
+  max-height: 11vh;
+  max-width: 27vh;
+  overflow-y: hidden;
+}
+
+.mosaico_produto {
+  padding-right: 5px;
+  margin-top: 20px;
+  overflow-y: hidden;
+  max-height: 26vh;
+}
+
+/* --------------------------- General Buttons ------------------------------ */
+.btn-default.active,
+.btn-default:active {
+  color: #FFFFFF;
+  background-color: #0c2340;
+}
+
+.btn-default.hover,
+.btn-default:hover {
+  color: #000000;
+  background-color: #dddddd;
+
+}
+
+.btn-default {
+  font-size: 8pt;
+}
+
+.btn-default.active:hover {
+  color: #FFFFFF;
+  background-color: #003FA6;
+}
+
+.btn-group-sm>.btn,
+.btn-sm {
+  padding: 1px;
+}
+
+/* -------------------------- Download Buttons ------------------------------ */
+.download_modelo {
+  margin-top: 22px;
+}
+
+a.shiny-download-link.shiny-bound-output {
+  float: right;
+  color: darkblue;
+  font-size: 10px;
+  padding: 5px;
+  text-decoration-line: underline;
+  text-decoration-color: darkblue;
+}
+
+/* ----------------------------- Textos ------------------------------------- */
+.h1,
+h1 {
+  line-height: 0.2;
+  text-align: center;
+  font-size: 20px;
+  color: navy;
+}
+
+.h2,
+h2 {
+  font-size: 18px;
+}
+
+.h3,
+h3 {
+  font-size: 16px;
+}
+
+.h4,
+h4 {
+  font-size: 12px;
+}
+
+.h2,
+.h3,
+.h4,
+h2,
+h3,
+h4 {
+  line-height: 0.2;
+  text-align: left;
+}
+
+/* ------------------------ Gráficos e Mapas -------------------------------- */
+.girafe {
+  margin: 0;
+}
+
+.girafe_container_std {
+  text-align: center;
+  height: fit-content;
+  width: 100%;
+}
+
+.mapa_uf {
+  max-height: 19vh;
+  max-width: 23vh;
+  overflow-y: hidden;
+}
+
+.mapa_micro {
+  max-height: 30vh;
+  max-width: 35vh;
+}
+
+.barras {
+  max-height: 21vh;
+  max-width: 42vh;
+  overflow-y: hidden;
+}
+
+.linhas {
+  max-height: 20vh;
+  max-width: 60vh;
+  overflow-y: hidden;
+}
+
+/* ---------------------------- Filtros ------------------------------------- */
+.faixa_titulo {
+  background-color: #708090;
+  height: 130px;
+}
+
+.alinhar {
+  display: flex;
+  height: fit-content;
+  width: -webkit-fill-available;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ----------------------------- Blocos ------------------------------------- */
+.painel_inicial {
+  height: 95vh;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.painel_introducao {
+  height: 90vh;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.content {
+  padding: 1px;
+  height: auto;
+  background-color: white;
+}
+
+.conteudo-util {
+  padding: 1px;
+  height: 80vh;
+  background-color: #d5d5d5;
+}
+
+.info_produto {
+  display: flex;
+  margin-top: 4px;
+  margin-left: 4px;
+  margin-right: 4px;
+  padding-left: 4px;
+  flex-direction: column;
+  background-color: #FFFFFF;
+  -webkit-box-shadow: 0 0 3px 1px #282a2d;
+}
+
+.bloco_painel {
+  max-height: 29vh;
+  -webkit-box-shadow: 0 0 3px 1px #282a2d;
+  background-color: #FFFFFF;
+  overflow-y: hidden;
+  padding: 2px;
+  margin: 4px;
+}
+
+.bloco_glossario {
+  margin: 20px;
+  padding: 10px;
+  height: fit-content;
+  background-color: #FFFFFF;
+  -webkit-box-shadow: 0 0 3px 1px #282a2d;
+}
+
+/* -------------------------------------------------------------------------- */
+.fas {
+  font-size: 14px
+}
+
+/* .well{
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-right: 0px;
+  padding-left: 0px;
+  border: 0;
+  text-align: -webkit-center;
+  background-color: #d5d5d5;
+    overflow-y: hidden;
+} */
+
+label {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: 700;
+  width: 100%;
+  font-size: 70%;
+}
+
+.row {
+  /* border: 0.5px solid red;*/
+    overflow-x: auto;
+}
+
+/* ----------------------------- Simulador ---------------------------------- */
+
+.alert-info,
+.bg-aqua,
+.callout.callout-info,
+.label-info,
+.modal-info .modal-body {
+  background-color: #0c2340 !important;
+}
+
+.nav-tabs-custom>.nav-tabs>li.active {
+  border-top-color: #0c2340 !important;
+}
+
+.info-box-icon .fas {
+  font-size: 28px;
+}
+
+.simulador .Reactable .rt-tr:not(.rt-tr-header) {
+  height: 24px;
+}
+
+.info-box {
+  min-height: 85px;
+  font-size: 13px;
+}
+
+.info-box-icon {
+  height: 85px;
+  line-height: inherit;
+}
+
+.simulador a.shiny-download-link.shiny-bound-output {
+  float: left;
+  color: black;
+  padding: 6px 12px;
+  text-decoration-line: none;
+  text-decoration-color: none;
+}
+
+.modal-title {
+  font-size: 20px;
+}
+
+.botao-rodar, .botao-rodar:focus {
+  color: white;
+  background-color: #0c2340;
+  padding: 12px;
+  font-size: 12px;
+}
+
+.botao-rodar:hover {
+  background-color: #0c2340ee;
+  color: white;
+}
+
+.botao-manual {
+  padding: 4px;
+  color: black;
+  font-size: 12px;
+}
+
+.simulador a {
+  color: #0c2340;
+  font-weight: bold;
+}
+
+.simulador button, .simulador a.btn {
+  font-weight: normal;
+}
+
+.simulador .box-body {
+  padding-top: 0;
+}
+
+.simulador .nav-pills>li.active>a, .nav-pills>li.active>a, .nav-pills>li.active>a:hover {
+  color: #000;
+  background-color: transparent;
+}
+
+.nav-stacked>li.active>a, .nav-stacked>li.active>a:hover {
+  border-left-color: #0c2340;
+}
+
+.resultados hr {
+  border-top: 1px solid #0c2340;
+}
