@@ -3,7 +3,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-Esse pacote contém o Dashboard do SIEnergia com o Módulo Simulador.
+O pacote otimizadorViewer em R é parte do Módulo de Otimização Energética do SIENERGIA - Sistema de Informações para Energia da EPE. Este Módulo do SIENERIGIA estima receitas potenciais da conversão de biomassa residual agropecuária em biocombustíveis e bioeletricidade, indicando alocações viáveis e capacidades de usinas por meio de modelos de otimização linear. As análises são realizadas em nível municipal, característica central do SIENERGIA, e levam em conta custos logísticos de transporte da biomassa e custos industriais de instalação e operação das usinas, além de restrições de demanda elétrica e de combustível. Essa abordagem integrada contribui para um planejamento estratégico mais detalhado e eficiente do uso energético da biomassa.
 
 ## Instalação
 
