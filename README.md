@@ -15,8 +15,8 @@ Siga os seguintes passos para executar o simulador do SIEnergia.
 4.	Instale o pacote “Rglpk” no R. Isso pode ser feito através do comando install.packages("Rglpk")
 5.	Clone este repositório (sienergia viewer) para a sua máquina local.
 6.	Instale o pacote “otimizadorViewer” com devtools::install()
-7.	Baixe a base de dados em: https://www.epe.gov.br/pt/publicacoes-dados-abertos/publicacoes/sienergia 
-8.	Descompacte as duas partes da base de dados e cole-a na raiz do projeto do sienergia-viewer.
+7.	Baixe as duas partes da base de dados em: https://www.epe.gov.br/pt/publicacoes-dados-abertos/publicacoes/sienergia 
+8.	Descompacte a primeira parte da base de dados e cole o arquivo na raiz do projeto do sienergia-viewer.
 9.	Abra o arquivo app.R na raiz do projeto sienergia-viewer.
 10.	Execute o comando shiny::runApp()
 11.	Caso a aplicação não abra automaticamente, cole em seu navegador o endereço apresentado no console do R, no formato “http://...” 
