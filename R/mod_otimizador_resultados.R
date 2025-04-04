@@ -363,6 +363,17 @@ mod_otimizador_resultados_server <- function(id, con, parametros, motor_otimizac
             tilim = tempo_limite_otimizacao,
             epgap = gap_otimizacao
           )
+        } else if (motor_otimizacao == "highs") {
+          res <- otimizadorLinear::otimizar(
+            inputs,
+            solver = "highs",
+            num_c = parametros()$gerais$num_c,
+            limitar_tamanho_usina = parametros()$gerais$limitar_tamanho_da_usina,
+            num_max_usinas_sede = parametros()$gerais$num_max_usinas_por_sede,
+            limitar_por_demanda = parametros()$gerais$limitar_por_demanda,
+            tilim = tempo_limite_otimizacao,
+            epgap = gap_otimizacao
+          )
         } else if(motor_otimizacao == "glpk") {
           res <- otimizadorLinear::otimizar(
             inputs,

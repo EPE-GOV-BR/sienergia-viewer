@@ -26,6 +26,7 @@ Imports:
     dashboardthemes,
     patchwork,
     ggiraph,
+    highs,
     readxl,
     RColorBrewer,
     scales,
